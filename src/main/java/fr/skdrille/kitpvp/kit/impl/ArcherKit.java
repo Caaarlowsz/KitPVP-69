@@ -1,12 +1,13 @@
-package fr.skdrille.kitpvp.kit;
+package fr.skdrille.kitpvp.kit.impl;
 
 import fr.skdrille.kitpvp.item.ItemProvider;
+import fr.skdrille.kitpvp.kit.Kit;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Arrays;
 
-public class ArcherKit implements Kit {
+public final class ArcherKit implements Kit {
 
     @Override
     public ItemStack[] getArmorContents() {

@@ -2,7 +2,7 @@ package fr.skdrille.kitpvp;
 
 import fr.skdrille.kitpvp.item.MenuOption;
 import fr.skdrille.kitpvp.kit.Kits;
-import fr.skdrille.kitpvp.menu.KitSelectorMenu;
+import fr.skdrille.kitpvp.menu.KitSelector;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -16,7 +16,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class KitPVP extends JavaPlugin implements Listener {
+public final class KitPVP extends JavaPlugin implements Listener {
 
     private static KitPVP instance;
 
@@ -44,6 +44,9 @@ public class KitPVP extends JavaPlugin implements Listener {
         final Player player = event.getPlayer();
         player.getInventory().clear();
         player.getInventory().setItem(0, new ItemStack(Material.BLAZE_ROD));
+
+        User user = new User(player.getUniqueId());
+        user.setAvailableKits(Kits.ARCHER, Kits.KNIGHT);
     }
 
     @EventHandler(priority = EventPriority.LOWEST)
@@ -52,7 +55,7 @@ public class KitPVP extends JavaPlugin implements Listener {
 
         if (event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
             if (player.getItemInHand() != null && player.getItemInHand().getType().equals(Material.BLAZE_ROD)) {
-                new KitSelectorMenu(player).open();
+                new KitSelector(player).open();
             }
         }
     }
@@ -62,8 +65,8 @@ public class KitPVP extends JavaPlugin implements Listener {
         if (event.getWhoClicked() instanceof Player) {
             final Player player = (Player) event.getWhoClicked();
 
-            if (event.getClickedInventory().getHolder() instanceof KitSelectorMenu) {
-                KitSelectorMenu menu = (KitSelectorMenu) event.getClickedInventory().getHolder();
+            if (event.getClickedInventory().getHolder() instanceof KitSelector) {
+                KitSelector menu = (KitSelector) event.getClickedInventory().getHolder();
                 event.setCancelled(true);
 
                 if (event.getCurrentItem() != null) {

@@ -1,6 +1,8 @@
 package fr.skdrille.kitpvp.kit;
 
 import fr.skdrille.kitpvp.item.MenuOption;
+import fr.skdrille.kitpvp.kit.impl.ArcherKit;
+import fr.skdrille.kitpvp.kit.impl.KnightKit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
