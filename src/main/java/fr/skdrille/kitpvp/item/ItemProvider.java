@@ -1,6 +1,9 @@
 package fr.skdrille.kitpvp.item;
 
+import net.minecraft.server.v1_12_R1.NBTTagCompound;
+import net.minecraft.server.v1_12_R1.NBTTagList;
 import org.bukkit.Material;
+import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -45,4 +48,15 @@ public final class ItemProvider {
         return buildItemStack(material, displayName, 1, lore);
     }
 
+    //TODO: Faire fonctionner le glow effect
+    public static ItemStack buildGlowingItemStack(Material material, String displayName, List<String> lore) {
+        ItemStack item = buildItemStack(material, displayName, lore);
+        net.minecraft.server.v1_12_R1.ItemStack nmsItem = CraftItemStack.asNMSCopy(item);
+
+        NBTTagCompound tag = nmsItem.getTag() == null ? new NBTTagCompound() : nmsItem.getTag();
+        tag.set("ench", new NBTTagList());
+        nmsItem.setTag(tag);
+
+        return CraftItemStack.asBukkitCopy(nmsItem);
+    }
 }

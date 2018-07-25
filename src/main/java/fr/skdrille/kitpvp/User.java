@@ -1,6 +1,7 @@
 package fr.skdrille.kitpvp;
 
-import fr.skdrille.kitpvp.kit.Kits;
+import fr.skdrille.kitpvp.enums.RankTitle;
+import fr.skdrille.kitpvp.enums.Kits;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -9,7 +10,9 @@ import java.util.*;
 public final class User {
 
     private static Map<UUID, User> users = new HashMap<>();
+
     private UUID uuid;
+    private RankTitle rankTitle;
     private Set<Kits> availableKits = new HashSet<>();
 
     public User(UUID uuid) {
@@ -19,6 +22,18 @@ public final class User {
 
     public UUID getUUID() {
         return uuid;
+    }
+
+    public String getName() {
+        return getBukkitPlayer().getName();
+    }
+
+    public RankTitle getRankTitle() {
+        return rankTitle;
+    }
+
+    public void setRankTitle(RankTitle rankTitle) {
+        this.rankTitle = rankTitle;
     }
 
     public Player getBukkitPlayer() {

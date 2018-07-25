@@ -3,7 +3,7 @@ package fr.skdrille.kitpvp.menu;
 import fr.skdrille.kitpvp.User;
 import fr.skdrille.kitpvp.item.ItemProvider;
 import fr.skdrille.kitpvp.item.MenuOption;
-import fr.skdrille.kitpvp.kit.Kits;
+import fr.skdrille.kitpvp.enums.Kits;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -15,7 +15,7 @@ import java.util.Map;
 public final class KitSelector extends Menu {
 
     public KitSelector(Player player) {
-        super(player, Menu.DEFAULT_PLAYER_COLOR + player.getName() + ChatColor.BLUE + " >> Available kits :", 9);
+        super(player, Menu.DEFAULT_PLAYER_COLOR + player.getName() + " >> " + ChatColor.LIGHT_PURPLE + "Available kits", 9);
     }
 
     @Override
